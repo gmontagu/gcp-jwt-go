@@ -4,11 +4,11 @@ import (
 	"context"
 	"crypto/rsa"
 	"encoding/json"
+	"github.com/golang-jwt/jwt/v4"
 	"io/ioutil"
 	"net/http"
 	"time"
 
-	"github.com/dgrijalva/jwt-go"
 	"github.com/pquerna/cachecontrol"
 )
 

@@ -5,10 +5,10 @@ import (
 	"fmt"
 	"net/http"
 
-	"github.com/dgrijalva/jwt-go"
-	"github.com/dgrijalva/jwt-go/request"
+	"github.com/golang-jwt/jwt/v4"
+	"github.com/golang-jwt/jwt/v4/request"
 
-	gcpjwt "github.com/someone1/gcp-jwt-go/v2"
+	gcpjwt "github.com/gmontagu/gcp-jwt-go"
 )
 
 // NewHandler will return a middleware that will try and validate tokens in incoming HTTP requests.

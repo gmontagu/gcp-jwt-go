@@ -5,7 +5,7 @@ Should work across virtually all environments, on or off of Google's Cloud Platf
 Getting Started
 
 It is highly recommended that you override the default algorithm implementations that you want to leverage a GCP service
-for in dgrijalva/jwt-go. You otherwise will have to manually pick the verification method for your JWTs and they will
+for in github.com/golang-jwt/jwt/v4. You otherwise will have to manually pick the verification method for your JWTs and they will
 place non-standard headers in the rendered JWT (with the exception of signJwt from the IAM API which overwrites the
 header with its own).
 
@@ -15,7 +15,7 @@ algorithms such as `gcpjwt.SigningMethodKMSRS256.Override()` and `gcpjwt.Signing
 Example:
 
 	import (
-		"github.com/someone1/gcp-jwt-go"
+		gcpjwt "github.com/gmontagu/gcp-jwt-go"
 	)
 
 	func init() {
@@ -36,7 +36,7 @@ Example:
 		gcpjwt.SigningMethodAppEngine.Override()
 	}
 
-As long as a you override a default algorithm implementation as shown above, using the dgrijalva/jwt-go is mostly unchanged.
+As long as a you override a default algorithm implementation as shown above, using the github.com/golang-jwt/jwt/v4 is mostly unchanged.
 
 Create a Token
 
@@ -54,7 +54,7 @@ Example:
 		"net/http"
 
 		"github.com/dgrijalva/jwt-go"
-		"github.com/someone1/gcp-jwt-go"
+		"github.com/gmontagu/gcp-jwt-go"
 		"google.golang.org/appengine" // only on AppEngine Standard when using the SigningMethodAppEngine signing method
 	)
 
@@ -118,8 +118,8 @@ Example:
 		"time"
 		"strings"
 
-		"github.com/dgrijalva/jwt-go"
-		"github.com/someone1/gcp-jwt-go"
+		"github.com/golang-jwt/jwt/v4"
+		"github.com/gmontagu/gcp-jwt-go"
 	)
 
 	func validateToken(ctx context.Context, tokenString string) (*jwt.Token, error) {
@@ -156,7 +156,7 @@ Example:
 		// The following is an extreme and advanced use-case - it is NOT recommended but here for those who need it.
 		//
 		// If we need to manually override the detected jwt.SigningMethod based on the 'alg' header
-		// This is basically copying the https://github.com/dgrijalva/jwt-go/blob/master/parser.go#L23 ParseWithClaims function here but forcing our own method vs getting one based on the Alg field
+		// This is basically copying the github.com/golang-jwt/jwt/v4/blob/master/parser.go#L23 ParseWithClaims function here but forcing our own method vs getting one based on the Alg field
 		// Or Try and parse, Ignore the result and try with the proper method:
 		token, _ := jwt.Parse(tokenString, func(token *jwt.Token) (interface{}, error) {
 			return nil, nil

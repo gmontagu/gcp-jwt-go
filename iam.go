@@ -4,8 +4,8 @@ import (
 	"context"
 	"crypto/rsa"
 	"fmt"
+	"github.com/golang-jwt/jwt/v4"
 
-	"github.com/dgrijalva/jwt-go"
 	"google.golang.org/api/iamcredentials/v1"
 )
 

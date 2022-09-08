@@ -2,10 +2,10 @@ package gcpjwt
 
 import (
 	"context"
+	"github.com/golang-jwt/jwt/v4"
 	"sync"
 	"time"
 
-	"github.com/dgrijalva/jwt-go"
 	"google.golang.org/appengine"
 )
 

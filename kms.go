@@ -7,10 +7,10 @@ import (
 	"encoding/asn1"
 	"encoding/pem"
 	"fmt"
+	"github.com/golang-jwt/jwt/v4"
 	"math/big"
 
 	kms "cloud.google.com/go/kms/apiv1"
-	"github.com/dgrijalva/jwt-go"
 	kmspb "google.golang.org/genproto/googleapis/cloud/kms/v1"
 )
 

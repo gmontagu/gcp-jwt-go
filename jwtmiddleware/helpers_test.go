@@ -11,14 +11,13 @@ import (
 	"os"
 	"testing"
 
+	gcpjwt "github.com/gmontagu/gcp-jwt-go"
+	oauth22 "github.com/gmontagu/gcp-jwt-go/oauth2"
 	"golang.org/x/oauth2"
 	"golang.org/x/oauth2/google"
 	gjwt "golang.org/x/oauth2/jwt"
 	"google.golang.org/appengine"
 	"google.golang.org/appengine/aetest"
-
-	gcpjwt "github.com/someone1/gcp-jwt-go/v2"
-	goauth2 "github.com/someone1/gcp-jwt-go/v2/oauth2"
 )
 
 var jwtConfig *gjwt.Config
@@ -103,7 +102,7 @@ func TestHelpers(t *testing.T) {
 		}
 		for _, test := range tests {
 			t.Run(test.name, func(t *testing.T) {
-				source, err := goauth2.JWTAccessTokenSource(ctx, test.config, audience)
+				source, err := oauth22.JWTAccessTokenSource(ctx, test.config, audience)
 				if (err != nil) != test.out {
 					t.Errorf("unexpected error `%v`", err)
 				}
@@ -115,7 +114,7 @@ func TestHelpers(t *testing.T) {
 	})
 
 	t.Run("JWTMiddleware", func(t *testing.T) {
-		invalidAudienceSource, err := goauth2.JWTAccessTokenSource(ctx, &gcpjwt.IAMConfig{
+		invalidAudienceSource, err := oauth22.JWTAccessTokenSource(ctx, &gcpjwt.IAMConfig{
 			ServiceAccount: jwtConfig.Email,
 			IAMType:        gcpjwt.IAMJwtType,
 		}, "https://invalid")
